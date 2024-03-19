@@ -37,16 +37,19 @@ function addItem(e) {
    let foodID = foodItem.id;
    let foodDescription = foodItem.cloneNode(true);
    let cartBox = document.getElementById("cart");
+   console.log(cartBox);
    let duplicateOrder = false;
    for (let i = 0; i < cartBox.childNodes.length; i++) {
-      if (cartBox.id === foodID) {
-         cartBox.childNodes[i].firstChild.value += 1;
+      if (cartBox.childNodes[i].id == foodID) {
+         cartBox.childNodes[i].firstChild.textContent = Number(cartBox.childNodes[i].firstChild.textContent) + 1;
          duplicateOrder = true;
          break;
       }
    }
    if (!duplicateOrder) {
       let orderCount = document.createElement("span");
-      
+      orderCount.textContent = 1;
+      foodDescription.prepend(orderCount);
+      cartBox.appendChild(foodDescription);
        }
 }
